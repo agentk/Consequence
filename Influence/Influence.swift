@@ -4,4 +4,4 @@
     import AppKit
 #endif
 
-typealias Point = CGPoint
+public typealias Point = CGPoint
