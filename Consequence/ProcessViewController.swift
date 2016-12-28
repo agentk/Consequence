@@ -16,6 +16,7 @@ class ProcessViewController: ViewController {
     var comboCount = 0
     var operationComboCount = 0
     var operationTotalCount = 0
+    var solution: [String]? = nil
 
     lazy var operationQueue: OperationQueue = {
         var queue = OperationQueue()
@@ -35,10 +36,6 @@ class ProcessViewController: ViewController {
         }
     }
     var boardName: String { return selectedBoard?.name ?? "" }
-
-    func updateDescriptionLabel() {
-
-    }
 
     var boards: [Board] = [
         Board.test,
@@ -73,6 +70,7 @@ class ProcessViewController: ViewController {
         let depth = maxIterationTextField.integerValue
         guard let board = selectedBoard else { return }
 
+        solution = nil
         comboCount = pow(board.pegs.count, depth)
         operationComboCount = pow(board.pegs.count, depth - 1)
         operationTotalCount = board.pegs.count
@@ -131,7 +129,7 @@ class ProcessViewController: ViewController {
 
     func operationDidFinish(solution: [String]?) {
 
-        guard solution != nil || operationQueue.operations.count == 0 else { return }
+        guard (self.solution == nil && operationQueue.operations.count == 0) || solution != nil else { return }
 
         startButton.isEnabled = true
         stopButton.isEnabled = false
@@ -139,9 +137,12 @@ class ProcessViewController: ViewController {
         progressBar.doubleValue = 0
         progressBar.stopAnimation(nil)
         operationQueue.cancelAllOperations()
-        descriptionLabel.stringValue = "\n\(boardName)\n\nSolution not found, try increasing search depth"
 
-        guard let solution = solution else { return }
+        guard let solution = solution else {
+            descriptionLabel.stringValue = "\n\(boardName)\n\nSolution not found, try increasing search depth"
+            return
+        }
+        self.solution = solution
         previewImageView.moves = solution
         descriptionLabel.stringValue = "\n\(boardName)\n\nFound solution: \(solution.joined(separator: ", "))"
     }

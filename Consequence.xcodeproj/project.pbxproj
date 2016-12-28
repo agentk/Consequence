@@ -42,6 +42,8 @@
 		62C97EF51E13731F0065737C /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C97EF31E13731F0065737C /* BackgroundView.swift */; };
 		62C97EF71E1380940065737C /* BruteSearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C97EF61E1380930065737C /* BruteSearchOperation.swift */; };
 		62C97EF81E1380940065737C /* BruteSearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C97EF61E1380930065737C /* BruteSearchOperation.swift */; };
+		62EC55551E13D7250012C4D7 /* Influence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6227EC4E1E12756600AA8C65 /* Influence.framework */; };
+		62EC55561E13D7250012C4D7 /* Influence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6227EC4E1E12756600AA8C65 /* Influence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		62F58D2A1E127A690036802D /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F58D291E127A690036802D /* Board.swift */; };
 		62F58D2B1E127A690036802D /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F58D291E127A690036802D /* Board.swift */; };
 		62F58D2D1E12827F0036802D /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F58D2C1E12827F0036802D /* BoardTests.swift */; };
@@ -93,7 +95,28 @@
 			remoteGlobalIDString = 6227EC691E12758400AA8C65;
 			remoteInfo = "Influence-iOS";
 		};
+		62EC55571E13D7250012C4D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6227EBC51E12702400AA8C65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6227EC4D1E12756600AA8C65;
+			remoteInfo = "Influence-macOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		62EC55591E13D7250012C4D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				62EC55561E13D7250012C4D7 /* Influence.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6216F8BC1E13246D00D0F0A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62EC55551E13D7250012C4D7 /* Influence.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,10 +428,12 @@
 				6227EC1A1E1270CD00AA8C65 /* Sources */,
 				6227EC1B1E1270CD00AA8C65 /* Frameworks */,
 				6227EC1C1E1270CD00AA8C65 /* Resources */,
+				62EC55591E13D7250012C4D7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				62EC55581E13D7250012C4D7 /* PBXTargetDependency */,
 			);
 			name = "Consequence-macOS";
 			productName = "Consequence-macOS";
@@ -821,6 +847,11 @@
 			target = 6227EC691E12758400AA8C65 /* Influence-iOS */;
 			targetProxy = 6227EC741E12758400AA8C65 /* PBXContainerItemProxy */;
 		};
+		62EC55581E13D7250012C4D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6227EC4D1E12756600AA8C65 /* Influence-macOS */;
+			targetProxy = 62EC55571E13D7250012C4D7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1107,9 +1138,11 @@
 		6227EC411E1270CD00AA8C65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "$(SRCROOT)/Consequence/macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karlbowden.Consequence;
 				PRODUCT_NAME = Consequence;
 				SDKROOT = macosx;
@@ -1120,9 +1153,11 @@
 		6227EC421E1270CD00AA8C65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = "$(SRCROOT)/Consequence/macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karlbowden.Consequence;
 				PRODUCT_NAME = Consequence;
 				SDKROOT = macosx;
@@ -1182,6 +1217,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Influence/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1197,6 +1233,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Influence/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
