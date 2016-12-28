@@ -2,6 +2,8 @@
 
 > An [Influence](https://itunes.apple.com/au/app/influence-the-puzzle-game/id1147836961?mt=8) brute force solver
 
+![](screen-shot-test-board.png)
+
 ## About
 
 Influence is a very well executed peg based puzzle game made by [Andy Drizen](https://twitter.com/andydrizen)
